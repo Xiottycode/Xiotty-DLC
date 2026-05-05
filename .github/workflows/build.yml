@@ -32,13 +32,8 @@ jobs:
 
       - name: Fix MainActivity.kt
         run: |
-          mkdir -p app/src/main/kotlin/com/xiotty/dlc
-          python3 -c "
-          content = open('app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt').read()
-          fixed = content.replace('switchChams.setOnCheckedChangeListener', 'findViewById<android.widget.Switch>(R.id.switchChams).setOnCheckedChangeListener')
-          open('app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt', 'w').write(fixed)
-          print('Fixed!')
-          "
+          sed -i 's/findViewById<Switch>/findViewById<android.widget.Switch>/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          cat app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt | grep -n "switchChams"
 
       - name: Create gradlew
         run: gradle wrapper --gradle-version 8.0
