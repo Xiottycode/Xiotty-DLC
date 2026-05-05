@@ -32,9 +32,12 @@ jobs:
 
       - name: Fix MainActivity.kt
         run: |
-          sed -n '36,40p' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt | cat -A
-          sed -i '38s/.*/        findViewById<android.widget.Switch>(R.id.switchChams).setOnCheckedChangeListener { _, isChecked ->/' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
-          sed -n '36,40p' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          sed -i 's/findViewById<Switch>(R\.id\.switchChams)/findViewById<android.widget.Switch>(R.id.switchChams)/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          sed -i 's/findViewById<Switch>(R\.id\.switchBunnyHop)/findViewById<android.widget.Switch>(R.id.switchBunnyHop)/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          sed -i 's/findViewById<Switch>(R\.id\.switchBoxESP)/findViewById<android.widget.Switch>(R.id.switchBoxESP)/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          sed -i 's/findViewById<Switch>(R\.id\.switchSnaplines)/findViewById<android.widget.Switch>(R.id.switchSnaplines)/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          sed -i 's/findViewById<Switch>(R\.id\.switchSilentAim)/findViewById<android.widget.Switch>(R.id.switchSilentAim)/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          grep -n "Switch\|switchChams" app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
 
       - name: Create gradlew
         run: gradle wrapper --gradle-version 8.0
