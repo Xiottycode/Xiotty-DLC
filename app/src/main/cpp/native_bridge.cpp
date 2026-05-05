@@ -1,3 +1,4 @@
+#include <sys/wait.h>
 #include <jni.h>
 #include <unistd.h>
 #include <sys/ptrace.h>
