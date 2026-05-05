@@ -32,8 +32,9 @@ jobs:
 
       - name: Fix MainActivity.kt
         run: |
-          sed -i 's/findViewById<Switch>/findViewById<android.widget.Switch>/g' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
-          cat app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt | grep -n "switchChams"
+          sed -n '36,40p' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt | cat -A
+          sed -i '38s/.*/        findViewById<android.widget.Switch>(R.id.switchChams).setOnCheckedChangeListener { _, isChecked ->/' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
+          sed -n '36,40p' app/src/main/kotlin/com/xiotty/dlc/MainActivity.kt
 
       - name: Create gradlew
         run: gradle wrapper --gradle-version 8.0
