@@ -19,21 +19,25 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Android SDK & NDK
+      - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install NDK
+      - name: Install NDK and CMake
         run: sdkmanager "ndk;25.2.9519653" "cmake;3.22.1"
 
-      - name: Create Gradle wrapper
-        run: |
-          gradle wrapper --gradle-version 8.0
+      - name: Install Gradle 8.0
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.0'
+
+      - name: Create gradlew
+        run: gradle wrapper --gradle-version 8.0
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --warning-mode none
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
