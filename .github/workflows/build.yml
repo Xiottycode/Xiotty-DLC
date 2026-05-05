@@ -25,6 +25,10 @@ jobs:
       - name: Install NDK
         run: sdkmanager "ndk;25.2.9519653" "cmake;3.22.1"
 
+      - name: Create Gradle wrapper
+        run: |
+          gradle wrapper --gradle-version 8.0
+
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
