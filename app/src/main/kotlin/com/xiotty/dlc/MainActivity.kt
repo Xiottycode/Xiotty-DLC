@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         txtStatus = findViewById(R.id.txtStatus)
         val btnInject = findViewById<Button>(R.id.btnInject)
 
-        // Настройка переключателей (сохранение состояния)
         findViewById<Switch>(R.id.switchBoxESP).setOnCheckedChangeListener { _, isChecked ->
             NativeBridge.setESPBox(isChecked)
         }
@@ -43,7 +42,6 @@ class MainActivity : AppCompatActivity() {
             NativeBridge.setBunnyHop(isChecked)
         }
 
-        // Проверка Shizuku
         checkShizuku()
 
         btnInject.setOnClickListener {
@@ -76,8 +74,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun getPidByName(processName: String): Int {
         return try {
-            val pid = java.lang.Runtime.getRuntime().exec(arrayOf("pidof", processName)).inputStream.bufferedReader().readText().trim().toIntOrNull() ?: -1
-            pid
+            java.lang.Runtime.getRuntime().exec(arrayOf("pidof", processName))
+                .inputStream.bufferedReader().readText().trim().toIntOrNull() ?: -1
         } catch (e: Exception) { -1 }
     }
 
