@@ -1,34 +1,5 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-}
-
-android {
-    namespace 'com.xiotty.dlc'
-    compileSdk 34
-
-    defaultConfig {
-        applicationId "com.xiotty.dlc"
-        minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+externalNativeBuild {
+    cmake {
+        path "src/main/cpp/CMakeLists.txt"
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
-
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
-}
-
-dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'androidx.core:core-ktx:1.12.0'
 }
