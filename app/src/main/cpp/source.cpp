@@ -1,3 +1,4 @@
+#include <pthread.h>
 #include <android/log.h>
 #include <dlfcn.h>
 #include <stdio.h>
